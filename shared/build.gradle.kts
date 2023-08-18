@@ -1,10 +1,20 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
+    multiplatformSwiftPackage {
+        packageName("SharedSPM")
+        swiftToolsVersion("5.8")
+        targetPlatforms {
+            iOS { v("14") }
+        }
+        outputDirectory(File(rootDir, "/"))
+    }
+
     targetHierarchy.default()
 
     android {
